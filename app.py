@@ -12,7 +12,8 @@ st.set_page_config(page_title="Análisis Inmobiliario Interactivo",
 df = pd.read_csv("data/processed/real_estate.csv", sep=";", decimal=",")
 df = df.drop(columns=[df.columns[0]], errors="ignore")
 
-columnas_numericas = ["rooms", "bathrooms", "surface", "price", "latitude", "longitude"]
+columnas_numericas = ["rooms", "bathrooms", "surface",
+                      "price", "latitude", "longitude"]
 
 for columna in columnas_numericas:
     if columna in df.columns:
@@ -36,7 +37,8 @@ Utiliza los filtros siguientes para explorar el dataset inmobiliario.
 Los resultados, estadísticas y gráficos se actualizarán con base en los datos filtrados.
 """)
 
-columna_filtro = st.sidebar.selectbox("Selecciona la columna para filtrar", columnas_numericas)
+columna_filtro = st.sidebar.selectbox("Selecciona la columna para filtrar",
+                                      columnas_numericas)
 
 valor_minimo = float(df[columna_filtro].min())
 valor_maximo = float(df[columna_filtro].max())
@@ -112,6 +114,7 @@ else:
                               yaxis_title=columna_y.capitalize())
 
     st.plotly_chart(fig_scatter, use_container_width=True)
+
 
     if {"latitude", "longitude"}.issubset(df_filtrado.columns):
         st.subheader("Mapa geográfico")
