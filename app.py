@@ -1,5 +1,6 @@
 import pandas as pd
 import plotly.express as px
+# TODO: Cambiar a histograma de matplotlib.ploty
 import streamlit as st
 
 
@@ -7,10 +8,11 @@ st.set_page_config(page_title="Análisis Inmobiliario Interactivo",
                    page_icon="🏠",
                    layout="wide")
 
-
-
-df = pd.read_csv("data/processed/real_estate.csv", sep=";", decimal=",")
-df = df.drop(columns=[df.columns[0]], errors="ignore")
+df = pd.read_csv("data/processed/real_estate.csv",
+                 sep=";",
+                 decimal=",")
+df = df.drop(columns=[df.columns[0]],
+             errors="ignore")
 
 columnas_numericas = ["rooms", "bathrooms", "surface",
                       "price", "latitude", "longitude"]
@@ -81,7 +83,7 @@ else:
 
     fig_histograma = px.histogram(df_filtrado,
                                   x=columna_target,
-                                  nbins=30,
+                                  nbins=20,
                                   title=f"Distribución de {columna_target}",
                                   labels={columna_target: columna_target.capitalize()})
 
