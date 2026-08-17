@@ -1,97 +1,211 @@
-# Proyecto
+# Análisis Inmobiliario Interactivo con Streamlit
 
-## Análisis Interactivo de Datos con Streamlit
+Aplicación de análisis exploratorio e interactivo de datos inmobiliarios desarrollada con **Python**, **Pandas**, **Plotly** y **Streamlit**.
 
-**Objetivos:** 
-- Realizar el Análisis Exploratorio de Datos (EDA) de un conjunto de datos utilizando **Pandas**.
-- Desarrollar una aplicación interactiva en **Streamlit** que cargue y visualice un conjunto de datos estándar, aplicando conceptos de manipulación de datos con **Pandas** e integración de *widgets* interactivos.
+El proyecto permite cargar un dataset procesado de propiedades inmobiliarias, aplicar filtros dinámicos, consultar estadísticas descriptivas y visualizar relaciones entre variables mediante gráficos interactivos.
 
-## Dataset seleccionado
+## Aplicación publicada
 
-Utilizaremos el *dataset* del curso de Power BI modificado previamente por el profesor para contener los desafios necesarios para el Proyecto. 
+La aplicación se encuentra desplegada en Streamlit Community Cloud:
 
+[https://ds-deploy-example-with-app-mzxmyzjrcthhmkb8tq9wp4.streamlit.app/](https://ds-deploy-example-with-app-mzxmyzjrcthhmkb8tq9wp4.streamlit.app/)
 
-## Actividades Requeridas del Proyecto
+## Objetivo del proyecto
 
-El proyecto se dividirá en dos fases:
+El objetivo principal es construir una aplicación interactiva que permita explorar datos inmobiliarios de forma visual y dinámica.
 
-La primera fase realizada en el archivo `practice.ipynb` consiste en:
-- Carga y Preparación de Datos (Pandas en Jupyter Notebook), 
-- Análisis Exploratorio de Datos (Pandas en Jupyter Notebook)
-- Grabación del dataframe resultante en un archivo CSV
+El proyecto contempla dos etapas principales:
 
-La segunda fase realizada en el archivo `app.py` consiste en:
-- Análisis Descriptivo Interactivo (Streamlit), y 
-- Visualización Dinámica (Streamlit).
-- Despliegue en la Nube (Streamlit Community Cloud).
+1. **Preparación y análisis de datos**
+   - Carga del dataset original.
+   - Limpieza y transformación de los datos con Pandas.
+   - Generación de un archivo CSV procesado para ser utilizado por la aplicación.
 
-### Primera Fase
+2. **Aplicación interactiva**
+   - Desarrollo de una interfaz web con Streamlit.
+   - Filtros dinámicos desde la barra lateral.
+   - Estadísticas descriptivas del dataset filtrado.
+   - Visualizaciones interactivas con Plotly.
+   - Visualización geográfica mediante mapa.
 
-En el archivo `notebooks/practice.ipynb`: 
-
-1. **Carga y Estructura:** Cargar el dataset que encontrarás en directorio `data/raw` y lo convertirás en un DataFrame de Pandas.
-2. **EDA**: Realizar un Análisis Exploratorio de Datos (EDA) del DataFrame utilizando Pandas, límpiarlo para obtener un nuevo dataframe.
-3. **Grabar**: Grabar el nuevo DataFrame en un archivo CSV con un nuevo nombre descriptivo en el directorio `data/processed`.
-
-### Segunda Fase
-
-En el archivo `app.py`:
-
-#### Análisis Descriptivo Interactivo (Streamlit Widgets)
-Esta fase se centra en usar los *widgets* de Streamlit para permitir al usuario explorar los datos.
-
-1.  **Sidebar de Control (`st.sidebar`):**
-    * Implementar un `st.sidebar.markdown()` para el título y descripción de los filtros.
-2.  **Filtros (`st.slider`):**
-    * Crear un **slider** que permita al usuario seleccionar un rango de alguna columna del DataFrame.
-    * Rango: El rango del slider debe ir desde el mínimo hasta el máximo de la columna.
-    * Filtrar el DataFrame para incluir solo los registros cuyo valor se encuentre dentro del rango seleccionado por el usuario.
-3.  **Resumen Descriptivo:**
-    * Mostrar la mediana y el rango (Máximo - Mínimo), la media, desviación estándar y los quartiles de las columnas del DataFrame resultante después de aplicar todos los filtros.
-
-#### Visualización Dinámica
-
-Deberás mostrar la relación entre las variables utilizando gráficos que se actualicen automáticamente con los filtros anteriores.
-
-1.  **Gráfico de Distribución del Target (`st.pyplot` o `st.plotly_chart`):**
-    * Crear un **histograma** de la variable objetivo utilizando una librería externa (como Matplotlib o Plotly).
-    * **Requisito:** El gráfico debe reflejar la distribución de los datos **después** de aplicar los filtros del usuario.
-2.  **Gráfico de Dispersión (Regresión):**
-    * Crear un gráfico de dispersión (scatter plot) que muestre la relación entre dos columnas del DataFrame.
-    * **Requisito:** Este gráfico también debe actualizarse con los datos filtrados y ser lo suficientemente informativo (ej. incluir etiquetas y un título).
-3.  ** Opcional - Mapa Geográfico** (Streamlit Nativo o Plotly):
-    * Si tu Dataset contiene valores de longitud y latitud utiliza la función nativa de Streamlit (st.map()) o un gráfico de dispersión de Plotly con st.plotly_chart() para mapear los valores de algunas columnas.
-    * Requisito: El mapa debe mostrar la distribución geográfica de los valores filtrados por el usuario.
-
----
-
-#### Despliegue en la Nube
-
-Deberás preparar tu proyecto para el despliegue.
-
-1.  **Git/GitHub:** Crear un **repositorio público** en GitHub a partir de este template.
-
-2.  **Estructura de Carpeta:**
-    * `app.py` (código de Streamlit).
-    * `notebooks/practice.ipynb` en este archivo puedes realizar un análisis previo del dataset propuesto
-    * `requirements.txt` (listado de dependencias: `streamlit`, `pandas`, `scikit-learn`, `matplotlib` o `plotly`).
-
-3.  **Despliegue:** Desplegar la aplicación final utilizando **Streamlit Community Cloud** (share.streamlit.io).
-
-## Entrega
-
-Deberás entregar:
-- el **enlace al repositorio de GitHub**.
-- el **enlace a la aplicación desplegada**
-
-## How to run it on your own machine
-1. Install the requirements
-
-```bash
-$ pip install -r requirements.txt
+## Estructura del proyecto
 ```
-2. Run the app
-
-```bash
-$ streamlit run app.py
+text
+.
+├── app.py
+├── requirements.txt
+├── data
+│   ├── raw
+│   │   └── dataset original
+│   └── processed
+│       └── real_estate.csv
+└── notebooks
+    └── practice.ipynb
 ```
+## Archivos principales
+
+### `app.py`
+
+Contiene la aplicación principal desarrollada con Streamlit.
+
+La aplicación realiza las siguientes tareas:
+
+- Carga el archivo procesado `data/processed/real_estate.csv`.
+- Convierte columnas numéricas relevantes al tipo adecuado.
+- Permite filtrar datos mediante un selector de columna y un rango de valores.
+- Muestra los registros filtrados.
+- Calcula estadísticas descriptivas:
+  - Media.
+  - Mediana.
+  - Desviación estándar.
+  - Mínimo.
+  - Máximo.
+  - Rango.
+  - Cuartiles.
+- Genera visualizaciones dinámicas:
+  - Histograma de la variable seleccionada.
+  - Gráfico de dispersión entre dos variables.
+  - Línea de tendencia mediante regresión OLS.
+  - Mapa geográfico cuando existen coordenadas de latitud y longitud.
+
+### `notebooks/practice.ipynb`
+
+Notebook utilizado para la fase inicial del proyecto.
+
+Incluye el trabajo de:
+
+- Carga del dataset original.
+- Exploración inicial de los datos.
+- Limpieza y preparación del DataFrame.
+- Exportación del dataset procesado al directorio `data/processed`.
+
+### `data/processed/real_estate.csv`
+
+Archivo CSV utilizado por la aplicación Streamlit.
+
+Contiene el dataset inmobiliario ya preparado para el análisis interactivo.
+
+### `requirements.txt`
+
+Listado de dependencias necesarias para ejecutar el proyecto.
+
+Incluye:
+
+- `numpy`
+- `pandas`
+- `matplotlib`
+- `plotly`
+- `scikit-learn`
+- `streamlit`
+- `statsmodels`
+
+## Funcionalidades de la aplicación
+
+## Panel lateral de filtros
+
+La aplicación incluye un panel lateral desde el cual el usuario puede:
+
+- Seleccionar una columna numérica para filtrar.
+- Definir un rango de valores mediante un slider.
+- Actualizar automáticamente los datos, estadísticas y gráficos según el filtro aplicado.
+
+## Datos filtrados
+
+Después de aplicar los filtros, la aplicación muestra:
+
+- Cantidad de registros encontrados.
+- Tabla interactiva con los datos filtrados.
+
+## Resumen descriptivo
+
+La aplicación calcula un resumen estadístico de las columnas numéricas disponibles, incluyendo:
+
+- Media.
+- Mediana.
+- Desviación estándar.
+- Valor mínimo.
+- Valor máximo.
+- Rango.
+- Primer cuartil.
+- Segundo cuartil.
+- Tercer cuartil.
+
+## Visualizaciones
+
+### Histograma
+
+Permite visualizar la distribución de una variable numérica seleccionada por el usuario.
+
+Por defecto, si la columna `price` está disponible, se utiliza como variable objetivo inicial.
+
+### Gráfico de dispersión
+
+Permite analizar la relación entre dos variables numéricas.
+
+El gráfico incluye una línea de tendencia calculada mediante regresión OLS.
+
+### Mapa geográfico
+
+Si el dataset contiene columnas de latitud y longitud, la aplicación muestra un mapa con la ubicación de las propiedades filtradas.
+
+## Tecnologías utilizadas
+
+- Python
+- Pandas
+- NumPy
+- Plotly
+- Streamlit
+- Statsmodels
+- Scikit-learn
+- Matplotlib
+- Jupyter Notebook
+
+## Instalación local
+
+Para ejecutar el proyecto en tu propio equipo, primero clona el repositorio y entra en la carpeta del proyecto.
+
+Luego instala las dependencias:
+```
+bash
+pip install -r requirements.txt
+```
+## Ejecución local
+
+Para iniciar la aplicación Streamlit, ejecuta:
+```
+bash
+streamlit run app.py
+```
+Después de ejecutar el comando, Streamlit mostrará una URL local similar a:
+```
+text
+http://localhost:8501
+```
+Abre esa dirección en tu navegador para utilizar la aplicación.
+
+## Flujo de trabajo recomendado
+
+1. Revisar o ejecutar el notebook `notebooks/practice.ipynb`.
+2. Verificar que el archivo procesado exista en `data/processed/real_estate.csv`.
+3. Instalar las dependencias del proyecto.
+4. Ejecutar la aplicación con Streamlit.
+5. Explorar los datos mediante filtros, estadísticas y gráficos.
+6. Consultar la versión publicada en Streamlit Community Cloud.
+
+## Despliegue
+
+La aplicación fue desplegada en **Streamlit Community Cloud**.
+
+URL pública:
+
+[https://ds-deploy-example-with-app-mzxmyzjrcthhmkb8tq9wp4.streamlit.app/](https://ds-deploy-example-with-app-mzxmyzjrcthhmkb8tq9wp4.streamlit.app/)
+
+## Entrega del proyecto
+
+La entrega del proyecto incluye:
+
+- Repositorio con el código fuente.
+- Notebook de análisis y preparación de datos.
+- Aplicación Streamlit funcional.
+- Archivo de dependencias.
+- Aplicación publicada en la nube.
